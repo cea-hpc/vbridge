@@ -18,7 +18,7 @@ static struct input_global {
 static void
 input_update_mods(unsigned mods)
 {
-    XkbLockModifiers(display.id, global.device, global.mask, mods);
+    XkbLockModifiers(display.id, XkbUseCoreKbd, global.mask, mods);
     XFlush(display.id);
 }
 
@@ -309,8 +309,6 @@ input_init(void)
 
     input_key(255, XK_VoidSymbol, 1); // ugly hack...
     input_release();
-
-    global.device = XkbUseCoreKbd;
 }
 
 int
